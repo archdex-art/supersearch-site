@@ -35,13 +35,12 @@ export default function Ecosystem() {
             viewport={viewportOnce}
             className="relative mx-auto aspect-square w-full max-w-[320px] sm:max-w-[460px]"
           >
-            {[100, 74, 48].map((p, i) => (
-              <div
-                key={p}
-                className="absolute rounded-full border border-white/[0.07]"
-                style={{ inset: `${(100 - p) / 2}%`, opacity: 1 - i * 0.15 }}
-              />
-            ))}
+            {/* concentric rings — the orbit ring (inset 9% → radius 41%) is exactly
+                where the nodes sit, so the icons read as a perfect circle */}
+            <div className="absolute inset-0 rounded-full border border-white/[0.05]" />
+            <div className="absolute rounded-full border border-white/[0.13]" style={{ inset: "9%" }} />
+            <div className="absolute rounded-full border border-white/[0.06]" style={{ inset: "23%" }} />
+            <div className="absolute rounded-full border border-white/[0.05]" style={{ inset: "36%" }} />
             <motion.div
               className="absolute inset-0"
               animate={{ rotate: 360 }}
@@ -50,7 +49,7 @@ export default function Ecosystem() {
               {NODES.map((n, i) => {
                 const Icon = n.icon;
                 const rad = ((STEP * i - 90) * Math.PI) / 180;
-                const r = 40;
+                const r = 41;
                 const x = 50 + r * Math.cos(rad);
                 const y = 50 + r * Math.sin(rad);
                 return (
