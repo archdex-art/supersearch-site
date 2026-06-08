@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import ParticleField from "./ParticleField";
-import { Arrow, Code, Check } from "./Icons";
+import { Arrow, Code, Check, Apple, Windows, Linux } from "./Icons";
 import { fadeUp, stagger, viewportOnce } from "../lib/motion";
-import { REPO, DMG_MACOS, RELEASE } from "../lib/links";
+import { REPO, DMG_MACOS, EXE_WINDOWS, DEB_LINUX, RELEASE } from "../lib/links";
 
 export default function CTA() {
   return (
@@ -30,28 +30,47 @@ export default function CTA() {
           <span className="glow-text">Execute.</span>
         </motion.h2>
         <motion.p variants={fadeUp} className="mt-6 max-w-xl text-balance text-lg text-soft">
-          A native macOS app — no terminal, no cloud, no LLM in the loop. Download the
-          build, or compile it yourself from source.
+          A native desktop app — no terminal, no cloud, no LLM in the loop. Grab the
+          build for your platform, or compile it yourself from source.
         </motion.p>
 
-        <motion.div variants={fadeUp} className="mt-9 flex flex-wrap items-center justify-center gap-3">
-          <a href={DMG_MACOS} download className="btn-primary">
-            Download for macOS <Arrow className="h-4 w-4" />
+        {/* per-platform downloads */}
+        <motion.div variants={fadeUp} className="mt-9 grid w-full max-w-xl grid-cols-1 gap-3 sm:grid-cols-3">
+          {[
+            { os: "macOS", icon: Apple, href: DMG_MACOS, fmt: ".dmg · universal" },
+            { os: "Windows", icon: Windows, href: EXE_WINDOWS, fmt: ".exe · x64" },
+            { os: "Linux", icon: Linux, href: DEB_LINUX, fmt: ".deb · x64" },
+          ].map((p) => {
+            const Icon = p.icon;
+            return (
+              <a
+                key={p.os}
+                href={p.href}
+                download
+                className="group glass-strong flex flex-col items-center gap-1.5 rounded-2xl px-4 py-5 text-center transition-all hover:border-white/20 hover:-translate-y-0.5"
+              >
+                <Icon className="h-7 w-7 text-fg transition-colors group-hover:text-electric-bright" />
+                <span className="mt-1 flex items-center gap-1 text-[15px] font-semibold text-fg">
+                  {p.os} <Arrow className="h-3.5 w-3.5 opacity-0 transition-all group-hover:translate-x-0.5 group-hover:opacity-100" />
+                </span>
+                <span className="font-mono text-[11px] text-faint">{p.fmt}</span>
+              </a>
+            );
+          })}
+        </motion.div>
+
+        <motion.div variants={fadeUp} className="mt-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-[13px] text-faint">
+          <a href={RELEASE} className="text-soft underline-offset-4 transition-colors hover:text-fg hover:underline">
+            All installers &amp; checksums
           </a>
-          <a href={REPO} className="btn-ghost">
-            <Code className="h-4 w-4" /> View source
+          <span className="opacity-40">·</span>
+          <a href={REPO} className="flex items-center gap-1.5 text-soft underline-offset-4 transition-colors hover:text-fg hover:underline">
+            <Code className="h-3.5 w-3.5" /> Build from source
           </a>
         </motion.div>
 
-        <motion.p variants={fadeUp} className="mt-4 text-[13px] text-faint">
-          Universal .dmg ·{" "}
-          <a href={RELEASE} className="text-soft underline-offset-4 transition-colors hover:text-fg hover:underline">
-            Linux &amp; Windows builds
-          </a>
-        </motion.p>
-
         <motion.div variants={fadeUp} className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[13px] text-faint">
-          {["Apple Silicon & Intel", "macOS 13 Ventura+", "Open source"].map((t) => (
+          {["Apple Silicon & Intel", "Windows 10/11", "Debian & Ubuntu", "Open source"].map((t) => (
             <span key={t} className="flex items-center gap-1.5">
               <Check className="h-3.5 w-3.5 text-cyan" /> {t}
             </span>
@@ -59,7 +78,7 @@ export default function CTA() {
         </motion.div>
 
         <motion.p variants={fadeUp} className="mt-6 max-w-md text-balance font-mono text-[12px] leading-relaxed text-faint/80">
-          Builds are currently unsigned — on first launch, right-click the app → Open → Open.
+          Builds are currently unsigned — macOS: right-click → Open · Windows: “More info” → Run anyway.
         </motion.p>
       </motion.div>
     </section>
