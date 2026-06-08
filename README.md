@@ -1,9 +1,14 @@
 # SuperSearch — marketing site
 
-A futuristic, AI-native landing page for **SuperSearch**, blending the cinematic dark
-UI of Raycast with the premium sci-fi interface style of Orvantia AI.
+A futuristic landing page for **SuperSearch**, the intent-driven runtime for macOS —
+blending the cinematic dark UI of Raycast with the premium sci-fi style of Orvantia AI.
 
-> Search beyond keywords. Intent. Context. Answers.
+**Live:** https://archdex-art.github.io/supersearch-site/
+
+> Search beyond keywords. Intent. Plan. Execute.
+
+Deployed automatically to GitHub Pages on every push to `main`
+(see [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml)).
 
 ## Stack
 
