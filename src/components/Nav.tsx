@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Search } from "./Icons";
-import { DMG_MACOS } from "../lib/links";
+import { Search, Github } from "./Icons";
+import { DMG_MACOS, REPO } from "../lib/links";
 
 const LINKS = [
   { label: "Capabilities", href: "#capabilities" },
@@ -64,6 +64,16 @@ export default function Nav({ onOpenPalette }: { onOpenPalette: () => void }) {
             <span className="font-mono text-[12px]">⌥</span>
             <span className="font-mono text-[12px]">Space</span>
           </button>
+          <a
+            href={REPO}
+            target="_blank"
+            rel="noreferrer noopener"
+            aria-label="View SuperSearch on GitHub"
+            title="View on GitHub"
+            className="flex h-[34px] w-[34px] items-center justify-center rounded-lg border border-white/10 bg-white/[0.03] text-soft transition-colors hover:border-white/20 hover:text-fg"
+          >
+            <Github className="h-[18px] w-[18px]" />
+          </a>
           <a
             href={DMG_MACOS}
             download
