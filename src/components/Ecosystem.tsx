@@ -53,15 +53,23 @@ export default function Ecosystem() {
                 const x = 50 + r * Math.cos(rad);
                 const y = 50 + r * Math.sin(rad);
                 return (
-                  <motion.div
+                  // Outer div owns position + centering. Keep the counter-rotation
+                  // on an INNER motion.div — Framer's `rotate` writes the full
+                  // `transform`, which would otherwise wipe translate(-50%,-50%)
+                  // and pin each node by its corner instead of its center.
+                  <div
                     key={n.label}
-                    className="absolute flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-xl glass"
-                    style={{ left: `${x}%`, top: `${y}%` }}
-                    animate={{ rotate: -360 }}
-                    transition={{ duration: 48, repeat: Infinity, ease: "linear" }}
+                    className="absolute"
+                    style={{ left: `${x}%`, top: `${y}%`, transform: "translate(-50%, -50%)" }}
                   >
-                    <Icon className="h-5 w-5 text-soft" />
-                  </motion.div>
+                    <motion.div
+                      className="flex h-12 w-12 items-center justify-center rounded-xl glass"
+                      animate={{ rotate: -360 }}
+                      transition={{ duration: 48, repeat: Infinity, ease: "linear" }}
+                    >
+                      <Icon className="h-5 w-5 text-soft" />
+                    </motion.div>
+                  </div>
                 );
               })}
             </motion.div>
