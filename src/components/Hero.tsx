@@ -3,8 +3,7 @@ import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import ParticleField from "./ParticleField";
 import { Search, Spark, Compass, Code, Check, Arrow } from "./Icons";
 import { fadeUp, stagger } from "../lib/motion";
-
-const REPO = "https://github.com/archdex-art/SuperSearch";
+import { DMG_MACOS } from "../lib/links";
 
 const PHRASES = [
   "open brave in incognito and search rust",
@@ -167,7 +166,7 @@ export default function Hero({ onOpenPalette }: { onOpenPalette: () => void }) {
         </motion.div>
 
         <motion.div variants={fadeUp} className="mt-8 flex flex-wrap items-center justify-center gap-3">
-          <a href={`${REPO}/releases`} className="btn-primary">Download for macOS <Arrow className="h-4 w-4" /></a>
+          <a href={DMG_MACOS} download className="btn-primary">Download for macOS <Arrow className="h-4 w-4" /></a>
           <a href="#thinks" className="btn-ghost">See how it works</a>
         </motion.div>
 

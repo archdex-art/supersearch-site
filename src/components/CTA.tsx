@@ -2,8 +2,7 @@ import { motion } from "framer-motion";
 import ParticleField from "./ParticleField";
 import { Arrow, Code, Check } from "./Icons";
 import { fadeUp, stagger, viewportOnce } from "../lib/motion";
-
-const REPO = "https://github.com/archdex-art/SuperSearch";
+import { REPO, DMG_MACOS, RELEASE } from "../lib/links";
 
 export default function CTA() {
   return (
@@ -36,13 +35,20 @@ export default function CTA() {
         </motion.p>
 
         <motion.div variants={fadeUp} className="mt-9 flex flex-wrap items-center justify-center gap-3">
-          <a href={`${REPO}/releases`} className="btn-primary">
+          <a href={DMG_MACOS} download className="btn-primary">
             Download for macOS <Arrow className="h-4 w-4" />
           </a>
           <a href={REPO} className="btn-ghost">
             <Code className="h-4 w-4" /> View source
           </a>
         </motion.div>
+
+        <motion.p variants={fadeUp} className="mt-4 text-[13px] text-faint">
+          Universal .dmg ·{" "}
+          <a href={RELEASE} className="text-soft underline-offset-4 transition-colors hover:text-fg hover:underline">
+            Linux &amp; Windows builds
+          </a>
+        </motion.p>
 
         <motion.div variants={fadeUp} className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[13px] text-faint">
           {["Apple Silicon & Intel", "macOS 13 Ventura+", "Open source"].map((t) => (

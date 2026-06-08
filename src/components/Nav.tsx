@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Search } from "./Icons";
-
-const REPO = "https://github.com/archdex-art/SuperSearch";
+import { DMG_MACOS } from "../lib/links";
 
 const LINKS = [
   { label: "Capabilities", href: "#capabilities" },
@@ -65,7 +64,11 @@ export default function Nav({ onOpenPalette }: { onOpenPalette: () => void }) {
             <span className="font-mono text-[12px]">⌥</span>
             <span className="font-mono text-[12px]">Space</span>
           </button>
-          <a href={`${REPO}/releases`} className="btn-primary !px-4 !py-2 text-[13px]">
+          <a
+            href={DMG_MACOS}
+            download
+            className="btn-primary !px-4 !py-2 text-[13px]"
+          >
             Download
           </a>
         </div>

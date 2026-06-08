@@ -4,14 +4,17 @@ import { Search, Doc, Code, Globe, Brain, Image, Plug, Layers } from "./Icons";
 import { fadeUp, scaleIn, stagger, viewportOnce } from "../lib/motion";
 
 const NODES = [
-  { icon: Image, label: "macOS Apps", sub: "launch · activate", a: 0 },
-  { icon: Doc, label: "Spotlight", sub: "mdfind files", a: 51 },
-  { icon: Code, label: "Terminal", sub: "$ live shell", a: 102 },
-  { icon: Plug, label: "AppleScript", sub: "osascript events", a: 153 },
-  { icon: Brain, label: "ChatGPT", sub: "/chatgpt inject", a: 204 },
-  { icon: Globe, label: "Browser", sub: "/brave open", a: 255 },
-  { icon: Layers, label: "Extensions", sub: "script · wasm", a: 306 },
+  { icon: Image, label: "macOS Apps", sub: "launch · activate" },
+  { icon: Doc, label: "Spotlight", sub: "mdfind files" },
+  { icon: Code, label: "Terminal", sub: "$ live shell" },
+  { icon: Plug, label: "AppleScript", sub: "osascript events" },
+  { icon: Brain, label: "ChatGPT", sub: "/chatgpt inject" },
+  { icon: Globe, label: "Browser", sub: "/brave open" },
+  { icon: Layers, label: "Extensions", sub: "script · wasm" },
 ];
+
+// Evenly distribute nodes around the circle, starting at the top (-90°).
+const STEP = 360 / NODES.length;
 
 export default function Ecosystem() {
   return (
@@ -44,9 +47,9 @@ export default function Ecosystem() {
               animate={{ rotate: 360 }}
               transition={{ duration: 48, repeat: Infinity, ease: "linear" }}
             >
-              {NODES.map((n) => {
+              {NODES.map((n, i) => {
                 const Icon = n.icon;
-                const rad = (n.a * Math.PI) / 180;
+                const rad = ((STEP * i - 90) * Math.PI) / 180;
                 const r = 40;
                 const x = 50 + r * Math.cos(rad);
                 const y = 50 + r * Math.sin(rad);
